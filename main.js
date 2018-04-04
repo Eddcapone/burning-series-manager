@@ -17,8 +17,8 @@ GM_addStyle('.contextMenuParent { position: relative;  }');
 GM_addStyle('.contextMenuContainer { position: absolute; background: gray; z-index: 100; -webkit-box-shadow: 10px 10px 31px -1px rgba(0,0,0,0.75);-moz-box-shadow: 10px 10px 31px -1px rgba(0,0,0,0.75);box-shadow: 5px 5px 15px -1px rgba(0,0,0,0.75);}');
 GM_addStyle('.contextMenu { display: grid; padding: 4px; width: 200px; border: 1px solid black;  color: black; }');
 GM_addStyle('.contextMenu li { border-bottom: 1px solid gray; }');
-GM_addStyle('.contextMenu li:hover { cursor: pointer; color: red; }');
-GM_addStyle('.contextMenuClose { position: absolute; top: 5px; right: 15px; color: red;  z-index: 110;}');
+GM_addStyle('.contextMenu li:hover { cursor: pointer; color: white; }');
+GM_addStyle('.contextMenuClose { position: absolute; top: 2px; right: 2px; color: red;  z-index: 110;}');
 GM_addStyle('.contextMenuClose:hover { cursor: pointer; }');
 
 var vormerken = [];
@@ -68,6 +68,13 @@ $(document).ready(function() {
             $(".contextMenuContainer").remove();
 
             $(this).append("<div class='contextMenuContainer'><ul class='contextMenu'>" + contextMenuLinks + "</ul><div class='contextMenuClose'><i class='fas fa-times'></i></div></div>");
+
+            $(".vollendet").css("background", vollendetFarbe);
+            $(".angefangen").css("background", angefangenFarbe);
+            $(".vormerken").css("background", vorgemerktFarbe);
+            $(".bekannt").css("background", bekanntFarbe);
+            $(".aufNaechsteFolgeWarten").css("background", fortsetzungFarbe);
+            $(".abgebrochen").css("background", abgebrochenFarbe);
 
             // Calculate the offset coordinates and set CSS rules
             var off = $(this).offset();
