@@ -127,6 +127,7 @@ function GM_saveValue(key, value)
     if (key === "customMenuRemoveItem" || key === "") return;
 
     value = value.replace(",", "");
+    value = value.replace("'", "");
 
     if (GM_getValue(key) === undefined) {
 
@@ -243,20 +244,21 @@ function init()
 {
     initStorage();
 
-    //outputGM_Storage();
+    outputGM_Storage();
 
     //Kommas aus title entfernen + Hintergrund weiß machen + HTML 'restoren' (ohne Komma)
     $("div.genre > ul > li > a").each(function(j, obj) {
         var newTitle = $(this).attr("title").replace(",","");
+        newTitle = newTitle.replace("'", "");
         $(this).attr("title", newTitle);
-		$(this).html(newTitle);
+		$(this).html(newTitle); //todo: auslagern um originale serientitel nicht zu verändern
         $(this).css("background", "white");
     });
 
     $.each(abgebrochen, function(i, item) {
         $("div.genre > ul > li > a[title='"+ item +"']").each(function(j, obj) {
             $(obj).css("background", abgebrochenFarbe);
-			$(obj).html("<i class='far fa-stop-circle'></i>&nbsp;" + $(obj).html());
+			$(obj).html("&nbsp;<i class='far fa-stop-circle'></i>&nbsp;" + $(obj).html());
         });
     });
     /*$.each(abgebrochenChance, function(i, item) {
@@ -268,35 +270,35 @@ function init()
     $.each(vormerken, function(i, item) {
         $("div.genre > ul > li > a[title='"+ item +"']").each(function(j, obj) {
             $(obj).css("background", vorgemerktFarbe);
-			$(obj).html("<i class='far fa-bookmark'></i>&nbsp;" + $(obj).html());
+			$(obj).html("&nbsp;<i class='far fa-bookmark'></i>&nbsp;" + $(obj).html());
         });
     });
 
     $.each(bekannt, function(i, item) {
         $("div.genre > ul > li > a[title='"+ item +"']").each(function(j, obj) {
             $(obj).css("background", bekanntFarbe);
-			$(obj).html("<i class='fas fa-child'></i>&nbsp;" + $(obj).html());
+			$(obj).html("&nbsp;<i class='fas fa-child'></i>&nbsp;" + $(obj).html());
         });
     });
 
     $.each(angefangen, function(i, item) {
         $("div.genre > ul > li > a[title='"+ item +"']").each(function(j, obj) {
             $(obj).css("background", angefangenFarbe);
-			$(obj).html("<i class='fas fa-eye'></i>&nbsp;" + $(obj).html());
+			$(obj).html("&nbsp;<i class='fas fa-eye'></i>&nbsp;" + $(obj).html());
         });
     });
 
     $.each(vollendet, function(i, item) {
         $("div.genre > ul > li > a[title='"+ item +"']").each(function(j, obj) {
             $(obj).css("background", vollendetFarbe);
-			$(obj).html("<i class='far fa-smile'></i>&nbsp;" + $(obj).html());
+			$(obj).html("&nbsp;<i class='far fa-smile'></i>&nbsp;" + $(obj).html());
         });
     });
 
     $.each(aufNaechsteFolgeWarten, function(i, item) {
         $("div.genre > ul > li > a[title='"+ item +"']").each(function(j, obj) {
             $(obj).css("background", fortsetzungFarbe);
-			$(obj).html("<i class='far fa-clock'></i>&nbsp;" + $(obj).html());
+			$(obj).html("&nbsp;<i class='far fa-clock'></i>&nbsp;" + $(obj).html());
         });
     });
 }
