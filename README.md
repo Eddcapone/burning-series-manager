@@ -30,5 +30,9 @@ var mainObj = {
 
 ![alt text](https://raw.githubusercontent.com/Eddcapone/burning-series-manager/master/img/newButton.PNG)
 
+### Serie demarkieren
+
+Falls eine Serie versehentlich markiert wurde, kann diese über den Button "Auswahl entfernen" wieder demarkiert werden.
+
 ## Credits:
 [Balázs Varga](https://stackoverflow.com/users/2909109/bal%C3%A1zs-varga) for developing the context menu position logic.
