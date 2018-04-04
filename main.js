@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Burning Series A
+// @name         Burning Series Manager
 // @namespace    http://bs.to/
-// @version      1.0
-// @description  Markiert vollständig angeschaute und angefangene Serien auf Burning Series. Man muss diese jedoch händisch in die Listen eintragen.
+// @version      2.2
+// @description  Ermöglicht das markieren von Serien nach diversen Kriterien.
 // @author       Eduard Fekete
 // @match        https://bs.to/andere-serien
 // @require      https://code.jquery.com/jquery-3.3.1.min.js
@@ -18,7 +18,7 @@ GM_addStyle('.contextMenuContainer { position: absolute; background: gray; z-ind
 GM_addStyle('.contextMenu { display: grid; padding: 4px; width: 200px; border: 1px solid black;  color: black; }');
 GM_addStyle('.contextMenu li { border-bottom: 1px solid gray; }');
 GM_addStyle('.contextMenu li:hover { cursor: pointer; color: white; }');
-GM_addStyle('.contextMenuClose { position: absolute; top: 2px; right: 2px; color: red;  z-index: 110;}');
+GM_addStyle('.contextMenuClose { border: 1px solid #D8D8D8; padding: 0px; padding-left:2px; padding-right: 2px; background: white; position: absolute; top: 1px; right: 1px; color: red;  z-index: 110;}');
 GM_addStyle('.contextMenuClose:hover { cursor: pointer; }');
 
 var vormerken = [];
@@ -245,16 +245,18 @@ function init()
 
     outputGM_Storage();
 
-    //Kommas aus title entfernen
+    //Kommas aus title entfernen + Hintergrund weiß machen + HTML 'restoren' (ohne Komma)
     $("div.genre > ul > li > a").each(function(j, obj) {
         var newTitle = $(this).attr("title").replace(",","");
         $(this).attr("title", newTitle);
+		$(this).html(newTitle);
         $(this).css("background", "white");
     });
 
     $.each(abgebrochen, function(i, item) {
         $("div.genre > ul > li > a[title='"+ item +"']").each(function(j, obj) {
             $(obj).css("background", abgebrochenFarbe);
+			$(obj).html("<i class='far fa-stop-circle'></i>&nbsp;" + $(obj).html());
         });
     });
     /*$.each(abgebrochenChance, function(i, item) {
@@ -266,30 +268,35 @@ function init()
     $.each(vormerken, function(i, item) {
         $("div.genre > ul > li > a[title='"+ item +"']").each(function(j, obj) {
             $(obj).css("background", vorgemerktFarbe);
+			$(obj).html("<i class='far fa-bookmark'></i>&nbsp;" + $(obj).html());
         });
     });
 
     $.each(bekannt, function(i, item) {
         $("div.genre > ul > li > a[title='"+ item +"']").each(function(j, obj) {
             $(obj).css("background", bekanntFarbe);
+			$(obj).html("<i class='fas fa-child'></i>&nbsp;" + $(obj).html());
         });
     });
 
     $.each(angefangen, function(i, item) {
         $("div.genre > ul > li > a[title='"+ item +"']").each(function(j, obj) {
             $(obj).css("background", angefangenFarbe);
+			$(obj).html("<i class='fas fa-eye'></i>&nbsp;" + $(obj).html());
         });
     });
 
     $.each(vollendet, function(i, item) {
         $("div.genre > ul > li > a[title='"+ item +"']").each(function(j, obj) {
             $(obj).css("background", vollendetFarbe);
+			$(obj).html("<i class='far fa-smile'></i>&nbsp;" + $(obj).html());
         });
     });
 
     $.each(aufNaechsteFolgeWarten, function(i, item) {
         $("div.genre > ul > li > a[title='"+ item +"']").each(function(j, obj) {
             $(obj).css("background", fortsetzungFarbe);
+			$(obj).html("<i class='far fa-clock'></i>&nbsp;" + $(obj).html());
         });
     });
 }
