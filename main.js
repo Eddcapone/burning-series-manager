@@ -243,7 +243,7 @@ function init()
 {
     initStorage();
 
-    outputGM_Storage();
+    //outputGM_Storage();
 
     //Kommas aus title entfernen + Hintergrund weiß machen + HTML 'restoren' (ohne Komma)
     $("div.genre > ul > li > a").each(function(j, obj) {
