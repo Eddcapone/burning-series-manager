@@ -1,5 +1,5 @@
 # burning-series-manager
-Markiert Serien auf Burning Series (bs.to) nach diversen Kriterien, z.B. wird eine Serie die man bereits vollständig angesehen hat grün markiert.
+Fügt ein Kontext Menü hinzu, welches nach einem Rechtsklick auf eine Serie erscheint. Ermöglicht es die Serien in diverse Kategorien einzuordnen, z.B. kann eine Serie die man bereits vollständig angesehen hat, mit dem Label "abgeschlossen" versehen werden, woraufhin sie auf der Seite entsprechend markiert wird.
 
 Neue Serien können über ein Kontextmenü das beim rechts klicken auf einer der Serien erscheint, hinzugefügt werden.
 
@@ -10,6 +10,8 @@ Neue Serien können über ein Kontextmenü das beim rechts klicken auf einer der
 ### Kategorien anpassen
 Die Context Menü Kategorien können ganz einfach angepasst werden. Es können auch problemlos neue Kategorien hinzugefügt werden.
 Hierzu fügt man dem Objekt `mainObj` einfach ein neues Objekt hinzu. Orientieren Sie sich einfach an den bereits vorhanden Objekten und nutzen Sie diese als Vorlage. In folgendem Beispiel wurde die neue Kategorie `langweilig` hinzugefügt.
+
+Die iconClass kann durch eine beliebige Font-Awesome Klasse ersetzt werden.
 
 ```
 var mainObj = {
