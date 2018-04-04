@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         Burning Series A
 // @namespace    http://bs.to/
-// @version      2.0
+// @version      1.0
 // @description  Markiert vollständig angeschaute und angefangene Serien auf Burning Series. Man muss diese jedoch händisch in die Listen eintragen.
 // @author       Eduard Fekete
 // @match        https://bs.to/andere-serien
 // @require      https://code.jquery.com/jquery-3.3.1.min.js
+// @require      https://use.fontawesome.com/releases/v5.0.9/js/all.js
 // @grant        GM_addStyle
 // @grant        GM_setValue
 // @grant        GM_getValue
@@ -17,7 +18,7 @@ GM_addStyle('.contextMenuContainer { position: absolute; background: gray; z-ind
 GM_addStyle('.contextMenu { display: grid; padding: 4px; width: 200px; border: 1px solid black;  color: black; }');
 GM_addStyle('.contextMenu li { border-bottom: 1px solid gray; }');
 GM_addStyle('.contextMenu li:hover { cursor: pointer; color: red; }');
-GM_addStyle('.contextMenuClose { position: absolute; top: 5px; right: 15px; color: red; }');
+GM_addStyle('.contextMenuClose { position: absolute; top: 5px; right: 15px; color: red;  z-index: 110;}');
 GM_addStyle('.contextMenuClose:hover { cursor: pointer; }');
 
 var vormerken = [];
@@ -46,14 +47,14 @@ var abgebrochenFarbe = "red";
 //var abgebrochenChanceFarbe = "orange";
 
 var contextMenuLinks =
-    "<li class='vormerken'>Vormerken</li>"+
-    "<li class='bekannt'>Bekannt</li>" +
-    "<li class='angefangen'>Angefangen</li>" +
-    "<li class='vollendet'>Vollendet</li>" +
-    "<li class='aufNaechsteFolgeWarten'>Auf nächste Folge warten</li>" +
-    "<li class='abgebrochen'>Abgebrochen</li>" +
+	"<li class='vollendet'><i class='far fa-smile'></i>&nbsp;Vollendet</li>" +
+	"<li class='angefangen'><i class='fas fa-eye'></i>&nbsp;Angefangen</li>" +
+	"<li class='aufNaechsteFolgeWarten'><i class='far fa-clock'></i>&nbsp;Auf nächste Folge warten</li>" +
+    "<li class='vormerken'><i class='far fa-bookmark'></i>&nbsp;Vormerken</li>"+
+    "<li class='bekannt'><i class='fas fa-child'></i>&nbsp;Bekannt</li>" +
+    "<li class='abgebrochen'><i class='far fa-stop-circle'></i>&nbsp;Abgebrochen</li>" +
     "<li>-----------------------------------------</li>" +
-    "<li class='customMenuRemoveItem'>Auswahl entfernen</li>";
+    "<li class='customMenuRemoveItem'><i class='fas fa-minus-circle'></i>&nbsp;Auswahl entfernen</li>";
 
 $(document).ready(function() {
 
@@ -66,7 +67,7 @@ $(document).ready(function() {
 
             $(".contextMenuContainer").remove();
 
-            $(this).append("<div class='contextMenuContainer'><ul class='contextMenu'>" + contextMenuLinks + "</ul><div class='contextMenuClose'>X</div></div>");
+            $(this).append("<div class='contextMenuContainer'><ul class='contextMenu'>" + contextMenuLinks + "</ul><div class='contextMenuClose'><i class='fas fa-times'></i></div></div>");
 
             // Calculate the offset coordinates and set CSS rules
             var off = $(this).offset();
@@ -135,7 +136,7 @@ function GM_saveValue(key, value)
     }
 }
 
-keys = ["vormerken", "bekannt", "angefangen", "vollendet", "aufNaechsteFolgeWarten", "abgebrochen"];
+
 
 function clearGM_Storage()
 {
@@ -146,6 +147,8 @@ function clearGM_Storage()
     GM_deleteValue("aufNaechsteFolgeWarten");
     GM_deleteValue("abgebrochen");
 }
+
+keys = ["vormerken", "bekannt", "angefangen", "vollendet", "aufNaechsteFolgeWarten", "abgebrochen"];
 
 function removeFromGM_Storage(value)
 {
