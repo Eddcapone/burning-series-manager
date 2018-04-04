@@ -1,5 +1,5 @@
 # burning-series-manager
-Fügt ein Kontext Menü hinzu, welches nach einem Rechtsklick auf eine Serie erscheint. Ermöglicht es die Serien in diverse Kategorien einzuordnen, z.B. kann eine Serie die man bereits vollständig angesehen hat, mit dem Label "abgeschlossen" versehen werden, woraufhin sie auf der Seite entsprechend markiert wird.
+Fügt ein Kontext Menü hinzu, welches nach einem Rechtsklick auf eine Serie erscheint. Ermöglicht es die Serien in diverse Kategorien einzuordnen, z.B. kann eine Serie die man bereits vollständig angesehen hat, mit dem Label "Vollendet" versehen werden, woraufhin sie auf der Seite entsprechend markiert wird.
 
 Neue Serien können über ein Kontextmenü das beim rechts klicken auf einer der Serien erscheint, hinzugefügt werden.
 
